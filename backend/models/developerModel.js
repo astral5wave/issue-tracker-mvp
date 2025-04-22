@@ -3,7 +3,7 @@ const DeveloperSchema = new mongoose.Schema({
     name: { type: String, required: true },
     email: { type: String, required: true },
     password: { type: String, required: true },
-    department: { type: mongoose.Schema.Types.ObjectId, ref: 'Department', required: true },
+    department: { type: mongoose.Schema.Types.ObjectId, ref: 'Department', default: null },
     project: { type: mongoose.Schema.Types.ObjectId, ref: 'Project', default: null },
     username: { type: String, required: true, unique: true }
 },{
