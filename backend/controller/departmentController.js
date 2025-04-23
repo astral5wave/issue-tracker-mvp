@@ -31,7 +31,7 @@ const addDepartment = asyncHandeler(async (req, res) => {
 
     try {
         const newDepartment = await Department.create({ name, description });
-        res.status(201).json(newDepartment);
+        return res.status(201).json(newDepartment);
     } catch (e) {
         console.log(e);
         return res.status(500).send(e);
@@ -55,7 +55,7 @@ const updateDepartment = asyncHandeler(async (req, res) => {
         department.description = description || department.description;
 
         const updatedDepartment = await department.save();
-        res.status(200).json(updatedDepartment);
+        return res.status(200).json(updatedDepartment);
     } catch (e) {
         console.log(e);
         return res.status(500).send(e);
@@ -75,7 +75,7 @@ const deleteDepartment = asyncHandeler(async (req, res) => {
         }
 
         await department.deleteOne();
-        res.status(200).json({ message: "Department deleted successfully", departmentRemoved: department });
+        return res.status(200).json({ message: "Department deleted successfully", departmentRemoved: department });
     } catch (e) {
         console.log(e);
         return res.status(500).send(e);
@@ -92,7 +92,7 @@ const getDepartmentById = asyncHandeler(async (req, res) => {
         if (!department) {
             return res.status(404).json({ message: "Department not found" });
         }
-        res.status(200).json(department);
+        return res.status(200).json(department);
     } catch (e) {
         console.log(e);
         return res.status(500).send(e);

@@ -58,11 +58,11 @@ const loginDeveloper = asyncHandeler(async (req, res) => {
                     data: {
                         "name": developerFind.name,
                         "email": developerFind.email,
-                        "userName": developerFind.username, 
+                        "userName": developerFind.username,
                     }
                 },
                 process.env.SECRET,
-                { expiresIn: "24h" });          
+                { expiresIn: "24h" });
             const developerFindObj = developerFind.toObject(); //JSON string to Object
             developerFindObj.token = token;
             return res.status(200).json(developerFindObj);
@@ -77,4 +77,20 @@ const loginDeveloper = asyncHandeler(async (req, res) => {
     }
 })
 
-module.exports= {registerDeveloper,loginDeveloper}
+//@desc Add department and project for developer
+//@route POST /api/developer/:username/assignFields
+const assignFields = asyncHandeler(async (req, res) => {
+    const { username } = req.params;
+    const { department, project } = req.body;
+    const developer = await Developer.findOne({ username });
+
+    if (!developer) {
+        return res.status(404).json({ message: "Developer not found" });
+    }
+    developer.department = department || developer.department;
+    developer.project = project || developer.project;
+    await developer.save();
+    res.status(200).json({ message: "Fields assigned successfully", developer: developer });
+})
+
+module.exports = { registerDeveloper, loginDeveloper, assignFields }

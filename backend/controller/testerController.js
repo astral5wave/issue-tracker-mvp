@@ -58,11 +58,11 @@ const loginTester = asyncHandeler(async (req, res) => {
                     data: {
                         "name": testerFind.name,
                         "email": testerFind.email,
-                        "userName": testerFind.username, 
+                        "userName": testerFind.username,
                     }
                 },
                 process.env.SECRET,
-                { expiresIn: "24h" });          
+                { expiresIn: "24h" });
             const testerFindObj = testerFind.toObject(); //JSON string to Object
             testerFindObj.token = token;
             return res.status(200).json(testerFindObj);
@@ -77,4 +77,20 @@ const loginTester = asyncHandeler(async (req, res) => {
     }
 })
 
-module.exports= {registerTester,loginTester}
+//@desc Add project for tester
+//@route POST /api/tester/:username/assignFields
+const assignFields = asyncHandeler(async (req, res) => {
+    const { username } = req.params;
+    const { project } = req.body;
+    const tester = await Tester.findOne({ username });
+
+    if (!tester) {
+        return res.status(404).json({ message: "Tester not found" });
+    }
+    tester.project = project || tester.project;
+    await tester.save();
+    res.status(200).json({ message: "Fields assigned successfully", tester: tester });
+})
+
+
+module.exports = { registerTester, loginTester, assignFields }
