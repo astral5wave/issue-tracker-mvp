@@ -26,7 +26,7 @@ function LoginForm() {
     }
   }
   return (
-    <div className="flex justify-center items-center max-h-screen">
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <form
         onSubmit={handleLogin}
         className="bg-white p-10 rounded-lg shadow-md w-full max-w-md"
@@ -69,7 +69,7 @@ function LoginForm() {
         </div>
         <button
           type="submit"
-          className="w-full bg-fuchsia-300 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-700"
+          className="w-full bg-fuchsia-600 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-700"
         >
           LOG IN
         </button>
