@@ -24,6 +24,7 @@ const registerDeveloper = asyncHandeler(async (req, res) => {
             {
                 role: "developer",
                 data: {
+                    id: developerCreated._id,
                     name: developerCreated.name,
                     email: developerCreated.email,
                     userName: developerCreated.username,
@@ -56,9 +57,10 @@ const loginDeveloper = asyncHandeler(async (req, res) => {
                 {
                     role: "developer",
                     data: {
-                        "name": developerFind.name,
-                        "email": developerFind.email,
-                        "userName": developerFind.username,
+                        id: developerFind._id,
+                        name: developerFind.name,
+                        email: developerFind.email,
+                        userName: developerFind.username,
                     }
                 },
                 process.env.SECRET,

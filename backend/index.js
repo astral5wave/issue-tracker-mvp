@@ -14,7 +14,7 @@ app.use("/api/tester",require("./routes/testerRouter"));
 app.use("/api/department",require("./routes/departmentRouter"));
 app.use("/api/project",require("./routes/projectRouter"));
 app.use("/api/issue",require("./routes/issueRouter"));
-// app.use("/api/comment",require("./routes/commentRouter"));
+app.use("/api/comment",require("./routes/commentRouter"));
 // app.use("/api/notification",require("./routes/notificationRouter"));
 
 app.get("/",(req,res)=>{

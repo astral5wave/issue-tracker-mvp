@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { } = require("../controller/issueController.js")
+const { createIssue,getAllIssues,updateIssueContentByTester,updateIssueContentByDeveloper} = require("../controller/issueController.js")
 const validateToken=require("../middleware/validateToken.js");
 
 router.use(validateToken);
@@ -9,10 +9,10 @@ router.route("/")
     .post(createIssue)
     .get(getAllIssues)
 
-router.route("/:id/tester")
+router.route("/:issueId/tester")
     .put(updateIssueContentByTester)
 
-router.route("/:id/developer")
+router.route("/:issueId/developer")
     .put(updateIssueContentByDeveloper)
 
 module.exports = router;

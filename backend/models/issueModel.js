@@ -5,8 +5,8 @@ const IssueSchema = new mongoose.Schema({
     status: { type: String, enum: ['Pending', 'In Progress', 'Done', 'Rejected'], default: 'Pending' },
     priority: { type: String, enum: ['Low', 'Medium', 'High', 'Critical'], default: 'Medium' },
     createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'Tester', required: true },
-    assignedTo: { type: mongoose.Schema.Types.ObjectId, ref: 'Department' },
-    project: { type: mongoose.Schema.Types.ObjectId, ref: 'Project', required: false }
+    assignedTo: { type: mongoose.Schema.Types.ObjectId, ref: 'Department', required: true },
+    project: { type: mongoose.Schema.Types.ObjectId, ref: 'Project', required: true }
 }, { timestamps: true });
 
 module.exports = mongoose.model("Issue", IssueSchema);
