@@ -79,6 +79,14 @@ function LoginForm() {
             Create an account
           </Link>
         </p>
+        <div className="mt-4">
+          <Link
+            to="/register"
+            className="block w-full text-center bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-700"
+          >
+            Go to Registration
+          </Link>
+        </div>
         {/* <p className="text-gray-600 mt-6">
           <strong>Demo User:</strong> <br />
           Email: user@example.com <br />
