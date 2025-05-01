@@ -1,11 +1,14 @@
 const express=require('express');
 require('dotenv').config()
-const mongoose = require('mongoose');
 const errorHandler = require('./middleware/errorHandler');
 const connectDB=require("./config/connectDB")
 const PORT=process.env.PORT||80000;
-
+const  cors = require('cors')
 const app=express();
+
+
+
+app.use(cors());
 connectDB();
 app.use(express.json())
 
