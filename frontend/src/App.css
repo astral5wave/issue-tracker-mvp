@@ -1,4 +1,17 @@
+@import "tailwindcss";
 .bg-dark-background {
-  background-color: #1a1a1a; /* Example dark background color */
+  background-color: black; /* Set the background color to black */
   color: white; /* Ensure text is visible */
+}
+
+.bg-kanban-background {
+  background-color: rgb(12, 12, 12);
+  /* color: white; */
+  box-sizing: border-box;
+}
+.mainBackgroundColor {
+  background-color: #0d1117;
+}
+.columnBackgroundColor {
+  background-color: #161c22;
 }

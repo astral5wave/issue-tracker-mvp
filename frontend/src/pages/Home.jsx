@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import Header from "../components/Header";
 import { useNavigate } from "react-router-dom";
+import KanbanBoard from "../components/KanbanBoard";
 const Home = () => {
   const navigate = useNavigate();
   useEffect(() => {
