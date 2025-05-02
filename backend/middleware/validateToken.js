@@ -7,8 +7,8 @@ const validToken =asyncHandeler (async (req,res,next)=>{
     if(authHeader && authHeader.startsWith("Bearer")){
         const token=authHeader.split(" ")[1];
         try{
-            const {userData} =await jwt.verify(token,process.env.SECRET);
-            req.userData=userData;     //req now have the user data in it.
+            const memberData =jwt.verify(token,process.env.SECRET);
+            req.memberData=memberData;     //req now have the member data in it.
             next();
         }
         catch(e){
