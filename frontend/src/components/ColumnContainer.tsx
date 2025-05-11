@@ -1,16 +1,35 @@
 import React from "react";
-import { Column, Id } from "./types";
+import { useMemo } from "react";
+import { Column, Id, Task } from "./types";
 import DeleteIcon from "../icons/DeleteIcon";
-import { useSortable } from "@dnd-kit/sortable";
+import { SortableContext, useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import { PlusIcon } from "lucide-react";
+import { create } from "../../../backend/models/developerModel";
+import TaskCard from "./TaskCard";
 interface Props {
   column: Column;
   deleteColumn: (id: Id) => void;
   updateColumn: (id: Id, title: string) => void;
+  createTask: (columnId: Id) => void;
+  deleteTask: (id: Id) => void;
+  updateTask: (id: Id, content: string) => void;
+  tasks: Task[];
 }
 function ColumnContainer(props: Props) {
-  const { column, deleteColumn, updateColumn } = props;
+  const {
+    column,
+    deleteColumn,
+    updateColumn,
+    createTask,
+    tasks,
+    deleteTask,
+    updateTask,
+  } = props;
   const [editMode, setEditMode] = React.useState(false);
+  const tasksIds = useMemo(() => {
+    return tasks.map((task) => task.id);
+  }, [tasks]);
   const {
     setNodeRef,
     attributes,
@@ -86,8 +105,28 @@ function ColumnContainer(props: Props) {
         </button>
       </div>
       {/* Column task Container */}
-      <div className="flex flex-grow">Content</div>
+      <div className="flex flex-grow flex-col gap-4 p-2 overflow-x-hidden overflow-y-auto">
+        <SortableContext items={tasksIds}>
+          {tasks.map((task) => (
+            <TaskCard
+              key={task.id}
+              task={task}
+              deleteTask={deleteTask}
+              updateTask={updateTask}
+            />
+          ))}
+        </SortableContext>
+      </div>
       {/* Column Footer */}
+      <button
+        className="flex gap-2 items-center columnBackgroundColor border-2 rounded-md p-4 border-x-columnBackgroundColor border-b-columnBackgroundColor hover:mainBackgroundColor hover:text-rose-500 active:bg-black"
+        onClick={() => {
+          createTask(column.id);
+        }}
+      >
+        <PlusIcon />
+        Add Task
+      </button>
     </div>
   );
 }
