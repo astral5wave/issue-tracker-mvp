@@ -1,10 +1,10 @@
 import { useState } from "react";
-import axios from "axios";
+// import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import Password from "../components/Password";
 import isValidEmail from "../utils/isValidEmail";
-import axiosInstance from '../utils/axiosInstance'
+import axiosInstance from "../utils/axiosInstance";
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -13,7 +13,6 @@ function LoginForm() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [role, setRole] = useState("Tester"); // Default role
-
 
   async function handleLogin(e) {
     e.preventDefault();
@@ -29,10 +28,13 @@ function LoginForm() {
     try {
       const requestBody = { email, password };
       let response;
-      if(role==="Tester"){
+      if (role === "Tester") {
         response = await axiosInstance.post("/api/tester/login", requestBody);
-      }else{
-        response = await axiosInstance.post("/api/developer/login", requestBody);
+      } else {
+        response = await axiosInstance.post(
+          "/api/developer/login",
+          requestBody
+        );
       }
       localStorage.setItem("token", response.data.token);
       navigate("/home");
@@ -93,9 +95,7 @@ function LoginForm() {
           </select>
         </div>
         <div className="text-red-500 text-xs my-1 w-full">
-          {
-            error && `* ${error}`
-          }
+          {error && `* ${error}`}
         </div>
         <button
           type="submit"
@@ -109,8 +109,6 @@ function LoginForm() {
             Create an account
           </Link>
         </p>
-
-
 
         {/* <div className="mt-4">
           <Link
