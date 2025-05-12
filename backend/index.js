@@ -25,9 +25,12 @@ app.get("/member",validateToken,(req,res)=>{
     const {memberData}=req;
     return res.status(200).json({
         member:{
-            role:memberData?.role||null,
-            name:memberData?.data.name||null,
-            userName:memberData?.data.userName||null,
+            role:memberData.role,
+            id:memberData.data.id,
+            name:memberData.data.name,
+            email:memberData.data.email,
+            userName:memberData.data.email,
+
         }
     });
 });
