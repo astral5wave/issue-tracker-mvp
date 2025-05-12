@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { createPortal } from "react-dom";
-import "../App.css";
+import "../index.css";
 import { useState } from "react";
 import ColumnContainer from "./ColumnContainer";
 import { DndContext, DragOverlay, useSensor, useSensors } from "@dnd-kit/core";

@@ -1,3 +1,32 @@
 @import "tailwindcss";
 @layer components {
 }
+.bg-dark-background {
+  background-color: black; /* Set the background color to black */
+  color: white; /* Ensure text is visible */
+}
+
+.bg-kanban-background {
+  background-color: rgb(12, 12, 12);
+  /* color: white; */
+  box-sizing: border-box;
+}
+.mainBackgroundColor {
+  background-color: #0d1117;
+}
+.columnBackgroundColor {
+  background-color: #161c22;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar:horizontal {
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-rose-900 rounded-xl;
+}
+.task > ::-webkit-scrollbar-thumb {
+  @apply bg-sky-500 rounded-xl;
+}

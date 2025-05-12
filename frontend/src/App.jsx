@@ -4,7 +4,7 @@ import LoginForm from "./pages/LoginForm";
 import Home from "./pages/Home";
 import RegisterForm from "./pages/RegisterForm";
 import KanbanBoard from "./components/KanbanBoard";
-import "./App.css";
+import "./index.css";
 
 function App() {
   return (
