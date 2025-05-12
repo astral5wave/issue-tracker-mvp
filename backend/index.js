@@ -5,7 +5,7 @@ const connectDB=require("./config/connectDB")
 const PORT=process.env.PORT||80000;
 const  cors = require('cors')
 const app=express();
-
+const validateToken=require('./middleware/validateToken');
 
 
 app.use(cors());
@@ -19,6 +19,18 @@ app.use("/api/project",require("./routes/projectRouter"));
 app.use("/api/issue",require("./routes/issueRouter"));
 app.use("/api/comment",require("./routes/commentRouter"));
 // app.use("/api/notification",require("./routes/notificationRouter"));
+
+
+app.get("/member",validateToken,(req,res)=>{
+    const {memberData}=req;
+    return res.status(200).json({
+        member:{
+            role:memberData?.role||null,
+            name:memberData?.data.name||null,
+            userName:memberData?.data.userName||null,
+        }
+    });
+});
 
 app.get("/",(req,res)=>{
     res.send({message:"Hi"})

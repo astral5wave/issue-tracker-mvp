@@ -1,7 +1,9 @@
 import React from "react";
-import { Car } from "lucide-react";
+import ChartBar from "../icons/ChartBar";
+
+// import { Car } from "lucide-react";
 const Logo = () => {
-  return <div className="logo w-16 h-16">Logo</div>;
+  return <div className="flex items-center justify-center px-4"><ChartBar/></div>;
 };
 
 export default Logo;
